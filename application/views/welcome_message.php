@@ -32,6 +32,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>
 						<hr>
 					</div>
+					<div class="alert alert-danger" role="alert" id="error_msg_login" style="display:none">
+						<strong>Error!</strong> Incorrect username or password.
+					</div>
+					<div class="alert alert-danger" role="alert" id="error_msg_register" style="display:none">
+						<strong>Error!</strong> Invalid Credential.
+					</div>
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
@@ -59,7 +65,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<input type="email" name="email" id="regemail" tabindex="1" class="form-control" placeholder="Email Address" value="">
 									</div>
 									<div class="form-group">
-										<input type="tel" name="phonenumber" id="phnum" tabindex="1" class="form-control" placeholder="phone number" value="">
+										<input type="tel" name="phonenumber" id="phnum" tabindex="1" class="form-control" placeholder="+15555555555" value="">
 									</div>
 									<div class="form-group">
 										<input type="password" name="password" id="regpassword" tabindex="2" class="form-control" placeholder="Password">
@@ -95,7 +101,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			        <div class="modal-body">
 			          	<form id="verify-form" onsubmit="return validateForm();">
 							<div class="form-group">
-								<input type="number" name="verifycode" id="verifycode" tabindex="1" class="form-control" placeholder="Username" value="">
+								<input type="number" name="verifycode" id="verifycode" tabindex="1" class="form-control" placeholder="6-Digit Code" value="">
 							</div>
 							<div class="form-group">
 								<div class="row">

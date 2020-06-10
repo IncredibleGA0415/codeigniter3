@@ -35,8 +35,13 @@ $(function() {
             },
 
             onFailure: function(err) {
-                console.log("auth error:",err)
-                alert(err);
+				console.log("auth error:",err)
+				$('#error_msg_login').css("display", "");
+				setTimeout(function() { 
+					//$("#error_msg").fadeIn();
+					$("#error_msg_login").fadeOut(2000);
+					//$('#error_msg').css("display", "none");
+				}, 1000);
             },
 
         });
@@ -106,7 +111,12 @@ $(function() {
 
         userPool.signUp(username, password, attributeList, null, function(err, result){
             if (err) {
-                alert(err);
+                $('#error_msg_register').css("display", "");
+				setTimeout(function() { 
+					//$("#error_msg").fadeIn();
+					$("#error_msg_register").fadeOut(2000);
+					//$('#error_msg').css("display", "none");
+				}, 1000);
                 return;
             }
             cognitoUser = result.user;
