@@ -94,8 +94,43 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </form>
                 </div>
             </div>
-        </div>
-    </section>
+		</div>
+	</section>
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">Verify your Registered Email</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				</div>
+				<div class="modal-body">
+					<div class="alert alert-danger" role="alert" id="error_msg_verify" style="display:none">
+						<strong>Error!</strong> Invalid Code.
+					</div>
+					<div class="alert alert-danger" role="alert" id="error_msg_resend" style="display:none">
+						<strong>Error!</strong> Can't resend.
+					</div>
+					<form id="verify-form" onsubmit="return validateForm();">
+						<div class="form-group">
+							<input type="number" name="verifycode" id="verifycode" tabindex="1" class="form-control" placeholder="6-Digit Code" value="">
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-sm-6 col-sm-offset-3">
+									<input type="submit" name="verify-submit" id="verify-submit" tabindex="4" class="form-control btn btn-success" value="verify">
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="resend-verify-code" class="btn waves-effect waves-light btn-rounded btn-outline-success">Resend code</button>
+					<!-- <button type="button" id="delete-user" class="btn waves-effect waves-light btn-rounded btn-outline-success">Delete user</button> -->
+					<button type="button" class="btn btn-info waves-effect" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->

@@ -51,7 +51,12 @@ $(function() {
         console.log(cognitoUser)
         cognitoUser.confirmRegistration(verifycode, true, function(err, result) {
             if (err) {
-                alert(err);
+                $('#error_msg_verify').css("display", "");
+				setTimeout(function() { 
+					//$("#error_msg").fadeIn();
+					$("#error_msg_verify").fadeOut(2000);
+					//$('#error_msg').css("display", "none");
+				}, 1000);
                 return;
             }
             console.log('call result: ' + result);
@@ -64,10 +69,15 @@ $(function() {
         console.log("resendVerifyCode")
         cognitoUser.resendConfirmationCode(function(err, result) {
             if (err) {
-                alert(err);
+                $('#error_msg_resend').css("display", "");
+				setTimeout(function() { 
+					//$("#error_msg").fadeIn();
+					$("#error_msg_resend").fadeOut(2000);
+					//$('#error_msg').css("display", "none");
+				}, 1000);
                 return;
                }
-            alert(result);
+            //alert(result);
         });
     }
     function deleteUser(cognitoUser){
