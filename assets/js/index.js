@@ -31,7 +31,8 @@ $(function() {
             onSuccess: function (result) {
                 console.log('access token + ' + result.getAccessToken().getJwtToken());
                 console.log('idToken + ' + result.idToken.jwtToken);
-                alert("Successfully Loggedin");
+                //alert("Successfully Loggedin");
+            window.location.href = 'loginsuccess';
             },
 
             onFailure: function(err) {

@@ -24,7 +24,6 @@ class Welcome extends CI_Controller {
 	}
 	public function loginsuccess()
 	{
-		exit("asdf");
 		$this->load->view('loginsuccess');
 	}
 }

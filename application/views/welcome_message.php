@@ -1,127 +1,136 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
+?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-		<meta charset="utf-8">
-		<link href="assets/css/style.css" rel='stylesheet' type='text/css' />
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text.css'/>
-		<script src="assets/js/lib/aws-cognito-sdk.min.js"></script>
-    	<script src="assets/js/lib/amazon-cognito-identity.min.js"></script>
-    	
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+    <title>Sign in</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href="assets/css/colors/blue.css" id="theme" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
 </head>
+
 <body>
-	
-	<div class="container">
-    	<div class="row">
-			<div class="col-md-6 col-md-offset-3">
-				<div class="panel panel-login">
-					<div class="panel-heading">
-						<div class="row">
-							<div class="col-xs-6">
-								<a href="#" class="active" id="login-form-link">Login</a>
-							</div>
-							<div class="col-xs-6">
-								<a href="#" id="register-form-link">Register</a>
-							</div>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <section id="wrapper">
+        <div class="login-register" style="background-image:url(assets/images/background/login-register.jpg);">
+            <div class="login-box card">
+                <div class="card-body">
+                    <form class="form-horizontal form-material" id="loginform" onsubmit="return validateForm();">
+						<h3 class="box-title m-b-20">Sign In</h3>
+						<div class="alert alert-danger" role="alert" id="error_msg_login" style="display:none">
+							<strong>Error!</strong> Incorrect username or password.
 						</div>
-						<hr>
-					</div>
-					<div class="alert alert-danger" role="alert" id="error_msg_login" style="display:none">
-						<strong>Error!</strong> Incorrect username or password.
-					</div>
-					<div class="alert alert-danger" role="alert" id="error_msg_register" style="display:none">
-						<strong>Error!</strong> Invalid Credential.
-					</div>
-					<div class="panel-body">
-						<div class="row">
-							<div class="col-lg-12">
-								<form id="login-form" onsubmit="return validateForm();" style="display: block;">
-									<div class="form-group">
-										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
-									</div>
-									<div class="form-group">
-										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
-									</div>
-									
-									<div class="form-group">
-										<div class="row">
-											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
-											</div>
-										</div>
-									</div>
-								</form>
-								<form id="register-form" onsubmit="return validateForm();" style="display: none;">
-									<div class="form-group">
-										<input type="text" name="username" id="regusername" tabindex="1" class="form-control" placeholder="Username" value="">
-									</div>
-									<div class="form-group">
-										<input type="email" name="email" id="regemail" tabindex="1" class="form-control" placeholder="Email Address" value="">
-									</div>
-									<div class="form-group">
-										<input type="tel" name="phonenumber" id="phnum" tabindex="1" class="form-control" placeholder="+15555555555" value="">
-									</div>
-									<div class="form-group">
-										<input type="password" name="password" id="regpassword" tabindex="2" class="form-control" placeholder="Password">
-									</div>
-									<div class="form-group">
-										<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
-									</div>
-									<div class="form-group">
-										<div class="row">
-											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
-											</div>
-										</div>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<div class="container">
-		<!-- Modal -->
-		<div class="modal fade" id="myModal" role="dialog">
-		    <div class="modal-dialog">
-		      <!-- Modal content-->
-		      	<div class="modal-content">
-			        <div class="modal-header">
-			          	<h4 class="modal-title">Verify your Registered Email</h4>
-			        </div>
-			        <div class="modal-body">
-			          	<form id="verify-form" onsubmit="return validateForm();">
-							<div class="form-group">
-								<input type="number" name="verifycode" id="verifycode" tabindex="1" class="form-control" placeholder="6-Digit Code" value="">
-							</div>
-							<div class="form-group">
-								<div class="row">
-									<div class="col-sm-6 col-sm-offset-3">
-										<input type="submit" name="verify-submit" id="verify-submit" tabindex="4" class="form-control btn btn-login" value="verify">
-									</div>
-								</div>
-							</div>
-						</form>
-						
-			        </div>
-			        <div class="modal-footer">
-			        	<button type="button" id="resend-verify-code" class="btn ">Resend code</button>
-			          	<button type="button" id="delete-user" class="btn ">Close</button>
-			          	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			        </div>
-		      	</div> 
-		    </div>
-		</div>
-	</div>
+                        <div class="form-group ">
+                            <div class="col-xs-12">
+                                <input class="form-control" type="text" name="username" id="username" required="" placeholder="Username"> </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <input class="form-control" type="password" name="password" id="password" required="" placeholder="Password"> </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-12 font-14">
+                                <div class="checkbox checkbox-primary pull-left p-t-0">
+                                    <input id="checkbox-signup" type="checkbox">
+                                    <label for="checkbox-signup"> Remember me </label>
+                                </div> <a href="javascript:void(0)" id="to-recover" class="text-dark pull-right"> <i class="fa fa-lock m-r-5"></i>  Forgot pwd?</a> </div>
+                        </div>
+                        <div class="form-group text-center m-t-20">
+                            <div class="col-xs-12">
+                                <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit" name="login-submit" id="login-submit">Log In</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
+                                <div class="social">
+                                    <a href="javascript:void(0)" class="btn  btn-facebook" data-toggle="tooltip" title="Login with Facebook"> <i aria-hidden="true" class="fa fa-facebook"></i> </a>
+                                    <a href="javascript:void(0)" class="btn btn-googleplus" data-toggle="tooltip" title="Login with Google"> <i aria-hidden="true" class="fa fa-google-plus"></i> </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group m-b-0">
+                            <div class="col-sm-12 text-center">
+                                <div>Don't have an account? <a href="register" class="text-info m-l-5"><b>Sign Up</b></a></div>
+                            </div>
+                        </div>
+                    </form>
+                    <form class="form-horizontal" id="recoverform">
+                        <div class="form-group ">
+                            <div class="col-xs-12">
+                                <h3>Recover Password</h3>
+                                <p class="text-muted">Enter your Email and instructions will be sent to you! </p>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="col-xs-12">
+                                <input class="form-control" type="text" required="" placeholder="Email"> </div>
+                        </div>
+                        <div class="form-group text-center m-t-20">
+                            <div class="col-xs-12">
+                                <button class="btn btn-primary btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="assets/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="assets/plugins/bootstrap/js/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="assets/js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="assets/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="assets/js/sidebarmenu.js"></script>
+    <!--stickey kit -->
+    <script src="assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <script src="assets/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <!--Custom JavaScript -->
+    <script src="assets/js/custom.min.js"></script>
+    <!-- ============================================================== -->
+    <!-- Style switcher -->
+    <!-- ============================================================== -->
+    <script src="assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
 	<script src="assets/js/index.js"></script>
+	<script src="assets/js/lib/aws-cognito-sdk.min.js"></script>
+	<script src="assets/js/lib/amazon-cognito-identity.min.js"></script>
 </body>
+
 </html>
